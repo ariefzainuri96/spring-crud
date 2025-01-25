@@ -19,6 +19,11 @@ public class ProductController {
         return productService.getProducts();
     }
 
+    @GetMapping("/my/{id}")
+    public BaseResponse<List<Product>> getMyProducts(@PathVariable int id) {
+        return productService.getMyProducts(id);
+    }
+
     @GetMapping("/{id}")
     public BaseResponse<Product> getProductById(
             @PathVariable int id

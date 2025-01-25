@@ -18,6 +18,10 @@ public class ProductService {
         return new BaseResponse<>(200, "Sukses", productRepository.findAll());
     }
 
+    public BaseResponse<List<Product>> getMyProducts(int userId) {
+        return new BaseResponse<>(200, "Sukses", productRepository.findByUserId(userId));
+    }
+
     public BaseResponse<Product> getProductById(int id) {
         Product product = productRepository.findById(id).orElse(null);
 

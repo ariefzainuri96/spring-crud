@@ -1,24 +1,26 @@
 package com.springcourse.simpleCrud.model.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Set;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_preference")
-public class UserPreference {
-
+@NoArgsConstructor
+@Table(name = "product_type")
+public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(nullable = false)
-    private Boolean isShowNotification;
+    private String productType;
 
-    @Column(nullable = false)
-    private Boolean isShowAds;
+    @ManyToMany(mappedBy = "productTypes")
+    @JsonIgnore
+    private Set<Product> products;
 }

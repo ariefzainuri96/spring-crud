@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,8 +16,8 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(nullable = false)
     private String productName;
@@ -24,15 +25,26 @@ public class Product {
     @Column(nullable = false)
     private int productPrice;
 
+    @Column(nullable = false)
+    private int userId;
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_product_type",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_type_id")
+    )
+    private Set<ProductType> productTypes;
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return productId == product.productId;
+        return id == product.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId);
+        return Objects.hash(id);
     }
 }
