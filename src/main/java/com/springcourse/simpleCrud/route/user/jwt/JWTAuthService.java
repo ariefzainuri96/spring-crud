@@ -3,7 +3,6 @@ package com.springcourse.simpleCrud.route.user.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.Map;
 

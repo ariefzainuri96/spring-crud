@@ -4,7 +4,6 @@ import com.springcourse.simpleCrud.model.schema.UserProfile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,8 +14,6 @@ public class UserPrincipal implements UserDetails {
     public UserPrincipal(UserProfile user) {
         this.user = user;
     }
-
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

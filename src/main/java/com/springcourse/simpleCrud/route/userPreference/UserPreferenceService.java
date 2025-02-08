@@ -2,7 +2,6 @@ package com.springcourse.simpleCrud.route.userPreference;
 
 import com.springcourse.simpleCrud.model.BaseResponse;
 import com.springcourse.simpleCrud.model.schema.UserPreference;
-import com.springcourse.simpleCrud.model.schema.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;

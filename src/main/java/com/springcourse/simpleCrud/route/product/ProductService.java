@@ -1,5 +1,6 @@
 package com.springcourse.simpleCrud.route.product;
 
+import com.springcourse.simpleCrud.model.request.ProductFilterRequest;
 import com.springcourse.simpleCrud.model.schema.Product;
 import com.springcourse.simpleCrud.model.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public BaseResponse<List<Product>> getProducts() {
+    public BaseResponse<List<Product>> getAllProduct() {
         return new BaseResponse<>(200, "Sukses", productRepository.findAll());
     }
 
@@ -28,14 +29,14 @@ public class ProductService {
         return new BaseResponse<>(
                 product != null ? 200 : 404,
                 String.format("%s", product != null ? "Sukses mendapatkan barang" : "Barang tidak ditemukan"),
-                product
-        );
+                product);
     }
 
     public BaseResponse<Product> addOrUpdateProduct(Optional<Integer> id, Product product) {
         productRepository.save(product);
 
-        return new BaseResponse<>(200, String.format("Berhasil %s produk", id.isPresent() ? "memperbarui" : "menambahkan"), product);
+        return new BaseResponse<>(200,
+                String.format("Berhasil %s produk", id.isPresent() ? "memperbarui" : "menambahkan"), product);
     }
 
     public BaseResponse<Product> deleteProduct(int id) {
@@ -49,5 +50,11 @@ public class ProductService {
 
     public BaseResponse<List<Product>> searchProduct(String keyword) {
         return new BaseResponse<>(200, "Berhasil mencari produk", productRepository.searchProducts(keyword));
+    }
+
+    public List<Product> filterProduct(ProductFilterRequest request) {
+        request.getProductTypes().forEach(System.out::println);
+
+        return null;
     }
 }
